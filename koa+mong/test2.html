@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<button>点我</button>
+	</body>
+</html>
+<script src="https://cdn.bootcss.com/jquery/1.10.2/jquery.min.js"></script>
+<script>
+	$(function(){
+		$("button").click(function(){
+			$.ajax({
+				type:"post",
+				url:"http://localhost:3000/ddd",
+				async:true,
+				data:{
+					"sex":666
+				},
+				success:function(res){
+					console.log(res);
+				}
+			});
+		})
+	})
+</script>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="https://cdn.bootcss.com/jquery/1.10.2/jquery.min.js"></script>
+		<style>
+			h1{
+				color: red;
+				text-align: center;
+				margin-top: 100px;
+			}
+		</style>
+	</head>
+	<body>
+		<h1>爱你大宝贝</h1>
+		<button>别点我</button>
+	</body>
+</html>
+<script type="text/javascript">
+	let URL ="http://localhost:3000";
+	$(function(){
+		$("button").on("click",function(){
+			$.ajax({
+			type:"post",
+			url:URL+"/query",
+			async:true,
+			data:{
+				nameid:10
+			},
+			success:function(res){
+				console.log(res)
+			}
+		});
+		})
+	})
+	
+</script>
