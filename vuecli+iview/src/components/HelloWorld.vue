@@ -24,6 +24,10 @@
  		 <Col span="20" offset="2">
 			<Table highlight-row @on-current-change="clickApp" class="tables" height="400" :columns="columns1" :data="data1"></Table>
 		</Col>
+		<br />
+		<Col span="20">
+			  <Page :total="total" v-on:on-change="pages" v-on:on-page-size-change="jump" show-elevator show-sizer></Page>
+		</Col>
          <!--对话框-->
          <div>
          	 <Modal
@@ -91,9 +95,12 @@
                 modal3: false,
                 value:"hahaha",
                 TableId:"",
-                URL:"http://aa4ceda7.ngrok.io",
+                URL:"http://localhost:3000",
                 Name:"",
                 parent:"",
+                total:100,
+                page:"1",
+                rows:"10",
                 
         	}
         },
@@ -103,9 +110,9 @@
         		let _that =this;
         		_that.TableId="";
           			this.$ajax({
-						      method: 'get',
+						      method: 'post',
 						      url: _that.URL+'/ddd',
-						      data: {}
+						      data:qs.stringify({'page': _that.page ,'rows': _that.rows })
 						   }).then(res=>{
 							  console.log(res);
 							  this.data1 = res.data;
@@ -273,6 +280,18 @@
 			        				content:'获取失败'
 			        			});
 							})
+            },
+            pages(a){
+            	let _that =this;
+            	console.log(a)
+            	_that.page = a;
+            	_that.show();
+            },
+            jump(a){
+            	console.log(a);
+            	let _that =this;
+            	_that.rows = a;
+            	_that.show();
             },
              instance (type) {
                 const title = '提示';
