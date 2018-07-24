@@ -4,20 +4,27 @@ use the vue-cli and iview ，koa add mongodb
 USE
 
 1.启动mongodb数据库
+
  mongod --dbpath=G:/MDdata1/db
  
  
 2.运行koa+mong
+
  cnpm install
+ 
  node mongdb
  
  
 3.运行vue-cli
+
  cnpm install 
+ 
  cnpm run dev
 
  4.运行mongooseMethods
+ 
  node mongooseMethods
+ 
  （此处包含 mongooseConnect连接、mongooseSchema数据模型、mongooseMethods方法）
  由于monk只能简单的增删改查，
  
