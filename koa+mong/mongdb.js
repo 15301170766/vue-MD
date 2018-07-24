@@ -13,13 +13,17 @@ const db = new Monk('localhost:27017/test');//链接到库
 const students = db.get("orgnize");//链接到表
 
 //查询所有数据
-router.get('/ddd', async ( ctx ) => {
+router.post('/ddd', async ( ctx ) => {
   ctx.response.type = 'text/html';
-  console.log(ctx.query.TableId)
+  //console.log(ctx.query.TableId)
   ctx.body = ctx.request.body
-	  console.log(ctx)
+	  //console.log(ctx)
+	  let rows = ctx.body.rows;
+let pages = (ctx.body.page - 1)*rows;
+console.log(pages);
 
-  	ctx.response.body = await students.find()
+console.log(rows);
+  	ctx.response.body = await students.find({},{sort:{"text":1}},{limit:rows},{skip:pages});
 });
 //GetModel
 router.post('/GetModel', async ( ctx ) => {

@@ -95,7 +95,7 @@
                 modal3: false,
                 value:"hahaha",
                 TableId:"",
-                URL:"http://localhost:3000",
+                URL:"http://e21cd618.ngrok.io",
                 Name:"",
                 parent:"",
                 total:100,
@@ -113,11 +113,12 @@
 						      method: 'post',
 						      url: _that.URL+'/ddd',
 						      data:qs.stringify({'page': _that.page ,'rows': _that.rows })
-						   }).then(res=>{
+						   }).then(function(res){
 							  console.log(res);
-							  this.data1 = res.data;
+							  _that.data1 = res.data.res;							
+								_that.total = res.data.total;
 							  //获取数据后销毁loading
-							  this.$Message.destroy();
+							  _that.$Message.destroy();
 							})
 							.catch(function(err){
 							  console.log(err);
@@ -209,7 +210,7 @@
 							  	_that.instance("success")
 							  }
 							  //this.data1 = res.data;
-							  
+							  _that.show();
 							})
 							.catch(function(err){
 							  console.log(err);
@@ -241,7 +242,7 @@
 								  	_that.instance("info")
 								  }
 								  //this.data1 = res.data;
-								  
+								  _that.show();
 								})
 								.catch(function(err){
 								  console.log(err);
@@ -272,7 +273,7 @@
 							  	_that.instance("warning")
 							  }
 							  //this.data1 = res.data;
-							  
+							  _that.show();
 							})
 							.catch(function(err){
 							  console.log(err);
@@ -325,7 +326,12 @@
                         break;
                 }
             }
-        }
+        },
+				mounted(){
+					let _that =this;
+					_that.loading () ;
+					_that.show();
+				}
     }
 </script>
 <style scoped="scoped" lang="less">

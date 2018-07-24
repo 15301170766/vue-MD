@@ -21,19 +21,39 @@ var PersonModel = db.model("person", PersonSchema);
 //根据模型创建实体，是指的个体对象
 var personEntity = new PersonModel({
     name : "zf",
-    age  : 6,
+    age  : 61,
     email: "zf@qq.com",
     home:'beijing'
 });
 //用save 方法把自己保存到数据库中
-personEntity.save(function(error,doc){
+//personEntity.save(function(error,doc){
+//  if(error){
+//      console.log("error :" + error);
+//  }else{
+//      console.log(doc);
+//  }
+//});
+PersonModel.find({}).skip(1).limit(2).sort({"name":1}).exec(function(error,doc){
     if(error){
         console.log("error :" + error);
     }else{
         console.log(doc);
     }
-});
-PersonModel.find({},function(error,docs){
-    //若没有向find传递参数，默认的是显示所有文档
-    console.log(docs);
 })
+//分页查询优化 ==》通过传来的id快速定位然后返回相应条数
+		//ArticleSchema.statics = {
+		//  fetch(id, cb) {
+		//      if (id) {
+		//          return this.find({'_id': {"$lt": id}})
+		//              .limit(5)
+		//              .sort({'_id':-1})
+		//              .exec(cb);
+		//          }else {
+		//              return this.find({})
+		//              .limit(5)
+		//              .sort({'_id':-1})
+		//              .exec(cb);
+		//          }
+		//      
+		//  }
+		//}   
