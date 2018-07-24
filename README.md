@@ -104,3 +104,6 @@ USE
 　　$centerSphere　　范围查询，球形范围（基于LBS）
 
 　　$slice　　　　查询字段集合中的元素（比如从第几个之后，第N到第M个元素）
+
+5.运行koamongoose
+实现增删改查，及后台分页
