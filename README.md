@@ -31,7 +31,7 @@ USE
  此处采用mongoose
  
  schema是mongoose里会用到的一种数据模式，可以理解为表结构的定义；每个schema会映射到mongodb中的一个collection，它不具备操作数据库的能力。
- （直白的说就是mongoose不能像monk一样指定连接某一张表，他会通过你自定义的schena自动生成一张表，并建立连接）
+ （直白的说就是mongoose很难像monk一样指定连接某一张表，他会通过你自定义的schena自动生成一张表，并建立连接）
  
  定义一个Schema就这么简单，指定字段名和类型
 
